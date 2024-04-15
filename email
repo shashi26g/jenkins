@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+            tools{
+                maven 'local_maven'
+                 }
+        stages {
+            stage('Build') {
+                steps {
+                        echo 'the job has been building '
+                    }
+                            }
+            stage('Test') {
+                steps {
+                    echo 'testing'
+                    }
+                            }
+            stage('Push') {
+                steps {
+                    echo 'This is Push Stage'
+                        }
+                        }
+            stage('Deploy') {
+                steps {
+                   echo 'This is deploy Stage'
+                    }
+                            }
+              }
+          post {
+              always {
+                  emailext (
+                              subject: "Build stage completed",
+                              body: "Build notification: ${BUILD_NUMBER} job name: ${JOB_NAME} Build number: {BUILD_NUMBER} Build url: {BUILD_URL}",
+                              to: 'shashi2668g@gmail.com',
+                              from: 'shashi2668g@gmail.com'
+                  )
+              }
+          
+          }
+              
+            }
+      
