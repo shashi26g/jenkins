@@ -1,8 +1,5 @@
 pipeline {
     agent any
-            tools{
-                maven 'local_maven'
-                 }
         stages {
             stage('Build') {
                 steps {
@@ -22,8 +19,7 @@ pipeline {
             stage('Deploy') {
                 steps {
                    echo 'This is deploy Stage'
-                    }
-                            }
+                    }             }
               }
           post {
               always {
